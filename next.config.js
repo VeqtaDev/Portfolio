@@ -1,8 +1,12 @@
 /** @type {import('next').NextConfig} */
+const isGitHubPages = process.env.GITHUB_ACTIONS === "true";
+const basePath = isGitHubPages ? "/Portfolio" : "";
+const assetPrefix = isGitHubPages ? "/Portfolio/" : "";
+
 const nextConfig = {
-  // Permet de générer un site 100% statique (pour GitHub Pages)
   output: "export",
-  // Désactive l'optimisation d'images côté serveur (obligatoire pour export statique)
+  basePath,
+  assetPrefix,
   images: {
     unoptimized: true,
   },
